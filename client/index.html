@@ -1,0 +1,47 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="jquery-2.1.4.js"></script>
+    <script type="text/javascript">
+
+        var secondFlightOffset = 200;
+        function getConfiguration(flightNumber, departureDate) {
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:3000/api/flight/' + flightNumber + '/' + departureDate + '/configuration',
+                dataType: "json", // data type of response
+                success: null
+            })
+                    .done(function (data) {
+                        var json = data;
+                        backdropId = json.aircraft.decks[0]['backdrop_id'];
+                        console.log(backdropId);
+                        imgSrc = "http://localhost:3001/" + backdropId + ".gif";
+                        console.log(imgSrc);
+                        loadCanvas(imgSrc, json);
+                    });
+        }
+
+        function loadCanvas(imgSrc, json) {
+            var canvas = document.getElementById('myCanvas');
+            var context = canvas.getContext('2d');
+            var imageObj = new Image();
+
+            imageObj.onload = function () {
+                canvas.width = imageObj.width;
+                canvas.height = imageObj.height;
+
+                context.drawImage(imageObj, 0, 0);
+            };
+            imageObj.src = imgSrc;
+        }
+    </script>
+
+</head>
+<body onLoad='getConfiguration("flightNumber", "departureDate");'>
+
+<canvas id="myCanvas" width="300" height="500" style="border:1px solid #d3d3d3;"/>
+
+
+</body>
+</html>
