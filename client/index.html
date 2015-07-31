@@ -32,9 +32,37 @@
                 canvas.height = imageObj.height;
 
                 context.drawImage(imageObj, 0, 0);
+                drawSeats(json, context);
             };
             imageObj.src = imgSrc;
         }
+
+        function drawSeats(json, context) {
+            var seatmap = json.definitions.seatmap;
+            var seatTypes = json.definitions.seats;
+            var seatTypesMap = getSeatTypeMap(seatTypes);
+            for (var i = 0; i < seatmap.length; i++) {
+                console.log(seatmap[i].position);
+                seatType = seatTypesMap.get(seatmap[i]["seat_type_ref"]);
+                context.beginPath();
+                context.rect(seatmap[i].position["width_offset"], seatmap[i].position["depth_offset"], seatType.width, seatType.depth);
+                context.fillStyle = 'green';
+                context.fill();
+                context.lineWidth = 2;
+                context.strokeStyle = 'black';
+                context.stroke();
+                console.log(i + " - done");
+            }
+        }
+
+        function getSeatTypeMap(seatTypes) {
+            var seatTypesMap = new Map();
+            for (var i = 0; i < seatTypes.length; i++) {
+                seatTypesMap.set(seatTypes[i].id, seatTypes[i]);
+            }
+            return seatTypesMap;
+        }
+
     </script>
 
 </head>
