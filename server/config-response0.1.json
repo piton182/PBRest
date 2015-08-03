@@ -6,48 +6,5 @@
 			"backdrop_id": "abc_123"
 			}
 		]
-	},	
-	"definitions": {
-		"seats": [ 
-			{
-				"id": "a", 
-				"width": 8, 
-				"depth": 10 
-			},
-			{	
-				"id": "b", 
-				"width": 6, 
-				"depth": 8 
-			}
-		],
-		"seatmap": [ 
-			{
-				"id": "lA", 
-				"deck_ref": "0", 
-				"position": {
-					"width_offset": 90, 
-					"depth_offset": 200
-				},
-				"seat_type_ref": "a" 
-			}, 
-			{
-				"id": "lB", 
-				"deck_ref": "0", 
-				"position": {
-					"width_offset": 98, 
-					"depth_offset": 202
-				}, 
-				"seat_type_ref": "b" 
-			}, 
-			{ 
-				"id": "2A", 
-				"deck_ref": "0", 
-				"position": { 
-					"width_offset": 90, 
-					"depth_offset": 215
-				},
-				"seat_type_ref": "a" 
-			}
-		]
 	}
 }

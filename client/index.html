@@ -1,10 +1,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <script type="text/javascript" src="jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript">
-
-        var secondFlightOffset = 200;
         function getConfiguration(flightNumber, departureDate) {
             $.ajax({
                 type: 'GET',
@@ -13,99 +11,15 @@
                 success: null
             })
                     .done(function (data) {
-                        var json = data;
-                        backdropId = json.aircraft.decks[0]['backdrop_id'];
-                        imgSrc = "http://localhost:3001/" + backdropId + ".gif";
-                        showSeating(json);
-
-                        loadCanvas(imgSrc, json);
+                        var backdropId = data.aircraft.decks[0]['backdrop_id'];
+                        var imgSrc = "http://localhost:3001/" + backdropId + ".gif";
+                        $("#backdrop").attr("src", imgSrc);
                     });
         }
-
-        function showSeating(json) {
-            var seat = json.definitions.seatmap[0];
-            $("#seatPosition").append("<b>Seat:</b> " + JSON.stringify(seat));
-
-            var seatTypes = json.definitions.seats;
-            var seatTypesMap = getSeatTypeMap(seatTypes);
-            $("#seatSize").append("<b>Seat_type_ref:</b> " + JSON.stringify(seatTypesMap.get(seat["seat_type_ref"])));
-
-            var deckTypes = json.aircraft.decks;
-            var deckTypesMap = getDeckTypes(deckTypes);
-            $("#seatDeck").append("<b>Deck_ref:</b> " + JSON.stringify(deckTypesMap.get(seat["deck_ref"])));
-            /*   console.log(json.definitions.seatmap);
-             console.log(json.definitions.seats);
-             console.log(json.definitions.seatmap[0]);
-             console.log(JSON.stringify(json.definitions.seatmap[0]));*/
-        }
-
-        function loadCanvas(imgSrc, json) {
-            var canvas = document.getElementById('myCanvas');
-            var context = canvas.getContext('2d');
-            var imageObj = new Image();
-
-            imageObj.onload = function () {
-                canvas.width = imageObj.width;
-                canvas.height = imageObj.height;
-
-                context.drawImage(imageObj, 0, 0);
-//                drawSeats(json, context);
-            };
-            imageObj.src = imgSrc;
-        }
-
-        function drawSeats(json, context) {
-            var seatmap = json.definitions.seatmap;
-            var seatTypes = json.definitions.seats;
-            var seatTypesMap = getSeatTypeMap(seatTypes);
-            for (var i = 0; i < seatmap.length; i++) {
-                console.log(seatmap[i].position);
-                seatType = seatTypesMap.get(seatmap[i]["seat_type_ref"]);
-                context.beginPath();
-                context.rect(seatmap[i].position["width_offset"], seatmap[i].position["depth_offset"], seatType.width, seatType.depth);
-                context.fillStyle = 'green';
-                context.fill();
-                context.lineWidth = 2;
-                context.strokeStyle = 'black';
-                context.stroke();
-                console.log(i + " - done");
-            }
-        }
-
-        function getSeatTypeMap(seatTypes) {
-            var seatTypesMap = new Map();
-            for (var i = 0; i < seatTypes.length; i++) {
-                seatTypesMap.set(seatTypes[i].id, seatTypes[i]);
-            }
-            return seatTypesMap;
-        }
-
-        function getDeckTypes(deckTypes) {
-            var result = new Map();
-            for (var i = 0; i < deckTypes.length; i++) {
-                result.set(deckTypes[i].id, deckTypes[i]);
-            }
-            return result;
-        }
-
     </script>
 
 </head>
 <body onLoad='getConfiguration("flightNumber", "departureDate");'>
-<div>
-    <div style="float: left; width: 250px">
-        <canvas id="myCanvas" width="300" height="500" style="border:1px solid #d3d3d3;"></canvas>
-    </div>
-    <div style="margin-left: 250px">
-        <H2>Seat information:</H2>
-
-        <div id="seatPlace"
-             style="width: 8px; height: 10px; background-color: yellow; border-color: black; border-style: solid; border-width: 1px"></div>
-        <div id="seatPosition"></div>
-        <div id="seatSize"></div>
-        <div id="seatDeck"></div>
-    </div>
-</div>
-
+<img id="backdrop" src="">
 </body>
 </html>
