@@ -14,12 +14,42 @@
                         var backdropId = data.aircraft.decks[0]['backdrop_id'];
                         var imgSrc = "http://localhost:3001/" + backdropId + ".gif";
                         $("#backdrop").attr("src", imgSrc);
+
+                        showSeating(data);
                     });
+        }
+
+        function showSeating(json) {
+            var seat = json.definitions.seatmap[0];
+            $("#seatPosition").append("<b>Seat:</b> " + JSON.stringify(seat));
+
+            var seatTypesMap = getIdsMap(json.definitions.seats);
+            $("#seatSize").append("<b>Seat_type_ref:</b> " + JSON.stringify(seatTypesMap.get(seat["seat_type_ref"])));
+
+            var deckTypesMap = getIdsMap(json.aircraft.decks);
+            $("#seatDeck").append("<b>Deck_ref:</b> " + JSON.stringify(deckTypesMap.get(seat["deck_ref"])));
+        }
+
+        function getIdsMap(seatTypes) {
+            var seatTypesMap = new Map();
+            for (var i = 0; i < seatTypes.length; i++) {
+                seatTypesMap.set(seatTypes[i].id, seatTypes[i]);
+            }
+            return seatTypesMap;
         }
     </script>
 
 </head>
 <body onLoad='getConfiguration("flightNumber", "departureDate");'>
-<img id="backdrop" src="">
+<img id="backdrop" src="" style="float: left">
+<div style="margin-left: 250px">
+    <H2>Seat information:</H2>
+
+    <div id="seatPlace"
+         style="width: 8px; height: 10px; background-color: yellow; border-color: black; border-style: solid; border-width: 1px"></div>
+    <div id="seatPosition"></div>
+    <div id="seatSize"></div>
+    <div id="seatDeck"></div>
+</div>
 </body>
 </html>
