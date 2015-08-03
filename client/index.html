@@ -15,11 +15,28 @@
                     .done(function (data) {
                         var json = data;
                         backdropId = json.aircraft.decks[0]['backdrop_id'];
-                        console.log(backdropId);
                         imgSrc = "http://localhost:3001/" + backdropId + ".gif";
-                        console.log(imgSrc);
+                        showSeating(json);
+
                         loadCanvas(imgSrc, json);
                     });
+        }
+
+        function showSeating(json) {
+            var seat = json.definitions.seatmap[0];
+            $("#seatPosition").append("<b>Seat:</b> " + JSON.stringify(seat));
+
+            var seatTypes = json.definitions.seats;
+            var seatTypesMap = getSeatTypeMap(seatTypes);
+            $("#seatSize").append("<b>Seat_type_ref:</b> " + JSON.stringify(seatTypesMap.get(seat["seat_type_ref"])));
+
+            var deckTypes = json.aircraft.decks;
+            var deckTypesMap = getDeckTypes(deckTypes);
+            $("#seatDeck").append("<b>Deck_ref:</b> " + JSON.stringify(deckTypesMap.get(seat["deck_ref"])));
+            /*   console.log(json.definitions.seatmap);
+             console.log(json.definitions.seats);
+             console.log(json.definitions.seatmap[0]);
+             console.log(JSON.stringify(json.definitions.seatmap[0]));*/
         }
 
         function loadCanvas(imgSrc, json) {
@@ -32,7 +49,7 @@
                 canvas.height = imageObj.height;
 
                 context.drawImage(imageObj, 0, 0);
-                drawSeats(json, context);
+//                drawSeats(json, context);
             };
             imageObj.src = imgSrc;
         }
@@ -63,13 +80,32 @@
             return seatTypesMap;
         }
 
+        function getDeckTypes(deckTypes) {
+            var result = new Map();
+            for (var i = 0; i < deckTypes.length; i++) {
+                result.set(deckTypes[i].id, deckTypes[i]);
+            }
+            return result;
+        }
+
     </script>
 
 </head>
 <body onLoad='getConfiguration("flightNumber", "departureDate");'>
+<div>
+    <div style="float: left; width: 250px">
+        <canvas id="myCanvas" width="300" height="500" style="border:1px solid #d3d3d3;"></canvas>
+    </div>
+    <div style="margin-left: 250px">
+        <H2>Seat information:</H2>
 
-<canvas id="myCanvas" width="300" height="500" style="border:1px solid #d3d3d3;"/>
-
+        <div id="seatPlace"
+             style="width: 8px; height: 10px; background-color: yellow; border-color: black; border-style: solid; border-width: 1px"></div>
+        <div id="seatPosition"></div>
+        <div id="seatSize"></div>
+        <div id="seatDeck"></div>
+    </div>
+</div>
 
 </body>
 </html>
