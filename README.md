@@ -11,3 +11,8 @@ Steps
 6. http-server -p 3001
 7. Open client/index.html
 
+Project has two tags
+1. git checkout Backdrop 
+2. git checkout Seat
+
+
