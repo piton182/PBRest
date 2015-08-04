@@ -3,11 +3,11 @@ Pre requirement
 Nodejs
 
 ## Steps
-* **open new terminal**
+* **_open new terminal_**
 * cd server
 * npm install
 * node app
-* **open new terminal**
+* **_open new terminal_**
 * cd httpserver
 * npm install http-server -g
 * http-server -p 3001
