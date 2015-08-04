@@ -7,7 +7,7 @@
             $.ajax({
                 type: 'GET',
                 url: 'http://localhost:3000/api/flight/' + flightNumber + '/' + departureDate + '/configuration',
-                dataType: "json", // data type of response
+                dataType: "json",
                 success: null
             })
                     .done(function (data) {
@@ -30,18 +30,19 @@
             $("#seatDeck").append("<b>Deck_ref:</b> " + JSON.stringify(deckTypesMap.get(seat["deck_ref"])));
         }
 
-        function getIdsMap(seatTypes) {
-            var seatTypesMap = new Map();
-            for (var i = 0; i < seatTypes.length; i++) {
-                seatTypesMap.set(seatTypes[i].id, seatTypes[i]);
+        function getMapFromList(someList) {
+            var result = new Map();
+            for (var i = 0; i < someList.length; i++) {
+                result.set(someList[i].id, someList[i]);
             }
-            return seatTypesMap;
+            return result;
         }
     </script>
 
 </head>
 <body onLoad='getConfiguration("flightNumber", "departureDate");'>
 <img id="backdrop" src="" style="float: left">
+
 <div style="margin-left: 250px">
     <H2>Seat information:</H2>
 
