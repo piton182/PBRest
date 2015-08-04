@@ -23,10 +23,10 @@
             var seat = json.definitions.seatmap[0];
             $("#seatPosition").append("<b>Seat:</b> " + JSON.stringify(seat));
 
-            var seatTypesMap = getIdsMap(json.definitions.seats);
+            var seatTypesMap = getMapFromList(json.definitions.seats);
             $("#seatSize").append("<b>Seat_type_ref:</b> " + JSON.stringify(seatTypesMap.get(seat["seat_type_ref"])));
 
-            var deckTypesMap = getIdsMap(json.aircraft.decks);
+            var deckTypesMap = getMapFromList(json.aircraft.decks);
             $("#seatDeck").append("<b>Deck_ref:</b> " + JSON.stringify(deckTypesMap.get(seat["deck_ref"])));
         }
 
