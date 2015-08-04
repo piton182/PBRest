@@ -3,13 +3,19 @@ var fs = require('fs');
 var app = express();
 var apiVersion = '0.1';
 
+var flightsMap = {
+    "NVR123": "aircraft_configuration_one_deck.json",
+    "NVR124": "aircraft_configuration_two_deck.json"
+};
+
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     next();
 });
 
 app.get('/api/flight/:flightNo/:date/configuration', function (req, res) {
-    raw = fs.readFileSync('config-response' + apiVersion + '.json', {encoding: 'UTF8'});
+    var fileName = flightsMap[req.params.flightNo];
+    var raw = fs.readFileSync(fileName, {encoding: 'UTF8'});
     res.send(raw);
 });
 

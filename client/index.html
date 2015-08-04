@@ -2,32 +2,18 @@
 <head>
     <meta charset="UTF-8">
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
     <script type="text/javascript">
-        function getConfiguration(flightNumber, departureDate) {
-            $.ajax({
-                type: 'GET',
-                url: 'http://localhost:3000/api/flight/' + flightNumber + '/' + departureDate + '/configuration',
-                dataType: "json",
-                success: null
-            })
-                    .done(function (data) {
-                        var backdropId = data.aircraft.decks[0]['backdrop_id'];
-                        var imgSrc = "http://localhost:3001/" + backdropId + ".gif";
-                        $("#backdrop").attr("src", imgSrc);
-
-                        showSeating(data);
-                    });
-        }
 
         function showSeating(json) {
             var seat = json.definitions.seatmap[0];
-            $("#seatPosition").append("<b>Seat:</b> " + JSON.stringify(seat));
+            $("#seatPosition").html("<b>Seat:</b> " + JSON.stringify(seat));
 
             var seatTypesMap = getMapFromList(json.definitions.seats);
-            $("#seatSize").append("<b>Seat_type_ref:</b> " + JSON.stringify(seatTypesMap.get(seat["seat_type_ref"])));
+            $("#seatSize").html("<b>Seat_type_ref:</b> " + JSON.stringify(seatTypesMap.get(seat["seat_type_ref"])));
 
             var deckTypesMap = getMapFromList(json.aircraft.decks);
-            $("#seatDeck").append("<b>Deck_ref:</b> " + JSON.stringify(deckTypesMap.get(seat["deck_ref"])));
+            $("#seatDeck").html("<b>Deck_ref:</b> " + JSON.stringify(deckTypesMap.get(seat["deck_ref"])));
         }
 
         function getMapFromList(someList) {
@@ -38,10 +24,18 @@
             return result;
         }
     </script>
-
+    <script src="routing.js"></script>
 </head>
-<body onLoad='getConfiguration("flightNumber", "departureDate");'>
-<img id="backdrop" src="" style="float: left">
+<body onLoad='doAjax("NVR123", "departureDate");'>
+<div>
+    <ul>
+        <li><a href="single-deck">Single-deck</a></li>
+        <li><a href="double-deck">Double-deck</a></li>
+    </ul>
+</div>
+
+<img id="backdropIn" src="" style="float: left">
+<img id="backdropOut" src="" style="float: left">
 
 <div style="margin-left: 250px">
     <H2>Seat information:</H2>
