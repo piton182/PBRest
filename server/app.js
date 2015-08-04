@@ -15,7 +15,7 @@ app.use(function (req, res, next) {
 
 app.get('/api/flight/:flightNo/:date/configuration', function (req, res) {
     var fileName = flightsMap[req.params.flightNo];
-    var raw = fs.readFileSync(fileName, {encoding: 'UTF8'});
+    var raw = fs.readFileSync(fileName ? fileName : "aircraft_configuration_one_deck", {encoding: 'UTF8'});
     res.send(raw);
 });
 

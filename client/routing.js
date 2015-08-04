@@ -29,7 +29,6 @@ function doAjax(flightNumber, departureDate) {
             } else {
                 $("#backdropOut").attr("src", "");
             }
-            showSeating(data);
         });
 }
 
