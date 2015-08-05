@@ -13,7 +13,10 @@ git clone https://github.com/SafeCodee/PBRest.git
 cd PBRest
 ```
 ### Checkout branch
-We have three branches backsrop, seat and constraints_groups
+We have three branches
+* backdrop
+* seat
+* constraints_groups
 ```
 git checkout [branchName]
 ```
