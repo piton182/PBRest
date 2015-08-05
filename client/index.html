@@ -23,6 +23,10 @@
             }
             return result;
         }
+        
+        function stringify_(value) {
+            return JSON.stringify(value, null, "\t");
+        }
     </script>
     <script src="routing.js"></script>
 </head>
@@ -38,6 +42,10 @@
     <div id="seatPosition"></div>
     <div id="seatSize"></div>
     <div id="seatDeck"></div>
+</div>
+<div style="margin-left: 50px; float: left">
+    <H2>All JSON</H2>
+    <pre id="allJson"></pre>
 </div>
 </body>
 </html>
