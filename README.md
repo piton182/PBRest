@@ -13,7 +13,7 @@ git clone https://github.com/SafeCodee/PBRest.git
 cd PBRest
 ```
 ### Checkout branch
-We have three branches
+We have three branches:
 * backdrop
 * seat
 * constraints_groups
@@ -40,8 +40,3 @@ cd ../client/
 http-server -a localhost -p 3002
 ```
 Got to [http://localhost:3002](http://localhost:3002)
-
-## Project has three branches
-* backdrop
-* seat
-* constraints_groups
