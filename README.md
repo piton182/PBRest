@@ -32,6 +32,7 @@ http-server -a localhost -p 3002
 ```
 Got to [http://localhost:3002](http://localhost:3002)
 
-## Project has two tags
-* git checkout Backdrop 
-* git checkout Seat
+## Project has three branches
+* backdrop
+* seat
+* constraints_groups
