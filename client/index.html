@@ -7,13 +7,15 @@
 
         function showSeating(json) {
             var seat = json.definitions.seatmap[0];
-            $("#seatPosition").html("<b>Seat:</b> " + JSON.stringify(seat));
+            $("#seatPosition").html("<b>Seat:</b> " + stringify_(seat));
 
             var seatTypesMap = getMapFromList(json.definitions.seats);
-            $("#seatSize").html("<b>Seat_type_ref:</b> " + JSON.stringify(seatTypesMap.get(seat["seat_type_ref"])));
+            $("#seatSize").html("<b>Seat_type_ref:</b> " + stringify_(seatTypesMap.get(seat["seat_type_ref"])));
 
             var deckTypesMap = getMapFromList(json.aircraft.decks);
-            $("#seatDeck").html("<b>Deck_ref:</b> " + JSON.stringify(deckTypesMap.get(seat["deck_ref"])));
+            $("#seatDeck").html("<b>Deck_ref:</b> " + stringify_(deckTypesMap.get(seat["deck_ref"])));
+
+            $("#allJson").html(stringify_(json));
         }
 
         function getMapFromList(someList) {
@@ -23,7 +25,7 @@
             }
             return result;
         }
-        
+
         function stringify_(value) {
             return JSON.stringify(value, null, "\t");
         }
@@ -34,14 +36,14 @@
 <img id="backdropIn" src="" style="float: left">
 <img id="backdropOut" src="" style="float: left">
 
-<div style="margin-left: 250px">
+<div style="margin-left: 50px; width: 300px; float: left">
     <H2>Seat information:</H2>
 
-    <div id="seatPlace"
-         style="width: 8px; height: 10px; background-color: yellow; border-color: black; border-style: solid; border-width: 1px"></div>
-    <div id="seatPosition"></div>
-    <div id="seatSize"></div>
-    <div id="seatDeck"></div>
+    <pre id="seatPlace"
+         style="width: 8px; height: 10px; background-color: yellow; border-color: black; border-style: solid; border-width: 1px"></pre>
+    <pre id="seatPosition"></pre>
+    <pre id="seatSize"></pre>
+    <pre id="seatDeck"></pre>
 </div>
 <div style="margin-left: 50px; float: left">
     <H2>All JSON</H2>
