@@ -4,6 +4,11 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
     <script src="routing.js"></script>
+    <script type="text/javascript">
+        function stringify_(value) {
+            return JSON.stringify(value, null, "\t");
+        }
+    </script>
 </head>
 <body onLoad='doAjax("NVR123", "departureDate");'>
 <div>
@@ -15,5 +20,9 @@
 
 <img id="backdropIn" src="" style="float: left">
 <img id="backdropOut" src="" style="float: left">
+<div style="margin-left: 50px; float: left">
+    <H2>All JSON</H2>
+    <pre id="allJson"></pre>
+</div>
 </body>
 </html>

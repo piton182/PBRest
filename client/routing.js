@@ -29,6 +29,8 @@ function doAjax(flightNumber, departureDate) {
             } else {
                 $("#backdropOut").attr("src", "");
             }
+
+            $("#allJson").html(stringify_(data));
         });
 }
 
