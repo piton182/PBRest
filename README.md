@@ -12,6 +12,12 @@ In a new terminal window
 git clone https://github.com/SafeCodee/PBRest.git
 cd PBRest
 ```
+### Checkout branch
+We have three branches backsrop, seat and constraints_groups
+```
+git checkout [branchName]
+```
+
 ### Rest server
 ```
 cd server
