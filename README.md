@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-### Rerequisites:
+### Prerequisites:
 * Nodejs
 * npm install -g http-server
 
