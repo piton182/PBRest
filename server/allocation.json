@@ -1,15 +1,27 @@
 {
 	"seatmap": [
 		{	
-			"id": "lA", 
+			"id": "1A", 
 			"allocation": true 
 		},
 		{
-			"id": "lB", 
+			"id": "1B", 
+			"allocation": true
+		},
+		{
+			"id": "1C", 
 			"allocation": true
 		},
 		{
 			"id": "2A", 
+			"allocation": false
+		},
+		{
+			"id": "2B", 
+			"allocation": false
+		},
+		{
+			"id": "2C", 
 			"allocation": false
 		}
 	]

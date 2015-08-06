@@ -1,0 +1,16 @@
+.tbSelectability td {
+    width: 14px;
+    height: 14px;
+}
+
+.tbSelectability td.noColor {
+    background-color: white;
+}
+
+.free {
+    background-color: green;
+}
+
+.occupied {
+    background-color: red;
+}
