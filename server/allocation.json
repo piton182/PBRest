@@ -1,0 +1,19 @@
+{
+	"seatmap": [
+		{	
+			"id": "lA", 
+			"allocation": true 
+		},
+		{
+			"id": "lB", 
+			"allocation": true
+		},
+		{
+			"id": "2A", 
+			"allocation": false
+		}
+	]
+}
+
+
+
