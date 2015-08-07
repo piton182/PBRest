@@ -3,15 +3,15 @@ module.exports.start = function () {
     var fs = require('fs');
     var app = express();
 
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    next();
-});
+    app.use(function (req, res, next) {
+        res.header("Access-Control-Allow-Origin", "*");
+        next();
+    });
 
-app.get('/api/flight/:flightNo/:date/allocation', function (req, res) {
-    var raw = fs.readFileSync("allocation.json", {encoding: 'UTF8'});
-    res.send(raw);
-});
+    app.get('/api/flight/:flightNo/:date/allocation', function (req, res) {
+        var raw = fs.readFileSync(__dirname + "/allocation.json", {encoding: 'UTF8'});
+        res.send(raw);
+    });
 
 
     var server = app.listen(3000, function () {
