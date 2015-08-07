@@ -1,11 +1,9 @@
-var staticModule = require('./httpserver/app.js');
 var restServer = require('./server/app.js');
 
 var express = require('express');
 var serveStatic = require('serve-static');
 var app = express();
 
-staticModule.start();
 restServer.start();
 
 app.use(serveStatic(__dirname + "/client"));
