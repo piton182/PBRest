@@ -2,27 +2,51 @@
 	"seatmap": [
 		{	
 			"id": "1A", 
-			"allocation": true 
+			"allocation": {
+				"available": true, 
+				"eligeble_passenger_types": [ 
+					"ADT"
+				]				
+			} 
 		},
 		{
 			"id": "1B", 
-			"allocation": true
+			"allocation": {
+				"available": true, 
+				"eligeble_passenger_types": [ 
+					"ADT", 
+					"INF"
+				]				
+			}
 		},
 		{
 			"id": "1C", 
-			"allocation": true
+			"allocation": {
+				"available": true, 
+				"eligeble_passenger_types": [ 
+					"ADT", 
+					"CHD",
+					"INF"
+				]				
+			}
 		},
-		{
+		{	
 			"id": "2A", 
-			"allocation": false
+			"allocation": {
+				"available": false				
+			} 
 		},
 		{
 			"id": "2B", 
-			"allocation": false
+			"allocation": {
+				"available": false			
+			}
 		},
 		{
 			"id": "2C", 
-			"allocation": false
+			"allocation": {
+				"available": false				
+			}
 		}
 	]
 }
