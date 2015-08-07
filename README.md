@@ -7,7 +7,6 @@
 * npm install -g http-server
 
 ### Clone PBRest 
-In a new terminal window
 ```
 git clone https://github.com/SafeCodee/PBRest.git
 cd PBRest
