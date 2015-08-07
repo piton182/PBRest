@@ -9,7 +9,7 @@ app.use(function (req, res, next) {
 });
 
 app.get('/api/flight/:flightNo/:date/allocation', function (req, res) {
-    var raw = fs.readFileSync(__dirname + "allocation.json", {encoding: 'UTF8'});
+    var raw = fs.readFileSync(__dirname + "/allocation.json", {encoding: 'UTF8'});
     res.send(raw);
 });
 
