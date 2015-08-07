@@ -12,24 +12,12 @@ In a new terminal window
 git clone https://github.com/SafeCodee/PBRest.git
 cd PBRest
 ```
-### Rest server
+### Run servers
 ```
-cd server
 npm install
-node app
+node dev
 ```
-### Static content server
-In a new terminal window
-```
-cd ../httpserver/
-http-server -a localhost -p 3001
-```
-### Client
-In a new terminal window
-```
-cd ../client/
-http-server -a localhost -p 3002
-```
+
 Got to [http://localhost:3002](http://localhost:3002)
 
 ## Project has two tags
